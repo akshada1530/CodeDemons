@@ -1,0 +1,28 @@
+{
+    "score": 0,
+    "total": 4,
+    "attempted": 1,
+    "accuracy": 0.0,
+    "details": {
+        "1": {
+            "marked": [
+                "1A",
+                "1B",
+                "1C"
+            ],
+            "result": "multiple marked"
+        },
+        "2": {
+            "marked": [],
+            "result": "unattempted"
+        },
+        "3": {
+            "marked": [],
+            "result": "unattempted"
+        },
+        "4": {
+            "marked": [],
+            "result": "unattempted"
+        }
+    }
+}
