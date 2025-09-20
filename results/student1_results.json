@@ -1,22 +1,14 @@
 {
-  "questions": {
-    "1A": {
-      "chosen": "A",
-      "correct": null,
-      "is_correct": false
-    },
-    "1B": {
-      "chosen": null,
-      "correct": null,
-      "is_correct": true
-    },
-    "1C": {
-      "chosen": null,
-      "correct": null,
-      "is_correct": true
-    }
-  },
-  "score": 2,
-  "attempted": 3,
-  "correct": 2
+  "student_image": "data/samples/student1.jpg",
+  "total_questions": 4,
+  "attempted": 0,
+  "correct": 0,
+  "wrong": 0,
+  "score": 0,
+  "percentage": 0.0,
+  "answers_detected": {
+    "1A": "A",
+    "1B": null,
+    "1C": null
+  }
 }

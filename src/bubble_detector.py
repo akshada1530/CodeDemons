@@ -2,20 +2,47 @@ import cv2
 import json
 import os
 
-def detect_bubbles(image_path, template_path, output_path=None, thresh=180):
+def detect_bubbles(image_path, template_path, output_path=None, thresh=150):
+    """
+    Detect filled bubbles on a student OMR sheet.
+    
+    Args:
+        image_path (str): Path to student image
+        template_path (str): Path to template JSON
+        output_path (str, optional): Where to save detected answers JSON
+        thresh (int, optional): Threshold value for binary inversion
+    Returns:
+        dict: Detected answers {question: selected_option}
+    """
+
     # Load template
     with open(template_path, "r") as f:
         template_data = json.load(f)
-        template = template_data.get("questions", template_data)  # ✅ flexible fix
+        template = template_data.get("questions", template_data)
 
-    # Load image
+    # Load image in grayscale
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
         print(f"[ERROR] Could not read image: {image_path}")
         return {}
 
+    # Overlay template points for verification
+    img_overlay = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+    for q_no, options in template.items():
+        if isinstance(options, dict):
+            for opt, (x, y) in options.items():
+                cv2.circle(img_overlay, (x, y), 5, (0, 0, 255), -1)
+    cv2.imshow("Template Overlay", img_overlay)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
     # Threshold for bubble detection
     _, binary = cv2.threshold(img, thresh, 255, cv2.THRESH_BINARY_INV)
+
+    # Visualize binary threshold
+    cv2.imshow("Binary Image", binary)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     detected_answers = {}
 
@@ -26,7 +53,7 @@ def detect_bubbles(image_path, template_path, output_path=None, thresh=180):
         if isinstance(options, dict):
             opt_iter = options.items()
         else:
-            # If it's a list, wrap it in dict with dummy option name
+            # If it's a list, wrap in dict
             opt_iter = [("A", options)]
 
         for opt, (x, y) in opt_iter:
@@ -35,12 +62,12 @@ def detect_bubbles(image_path, template_path, output_path=None, thresh=180):
                 continue
 
             non_zero = cv2.countNonZero(roi)
-            if non_zero > 50:
+            if non_zero > 20:  # reduced threshold to detect faint bubbles
                 filled = opt
 
         detected_answers[q_no] = filled
 
-    # Save output if path provided
+    # Save output if provided
     if output_path:
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "w") as f:
