@@ -92,3 +92,9 @@ python src/process_cli.py \
 * Machine learning model for ambiguous or partially filled bubbles.
 * Automatic sheet version detection and adaptive thresholding.
 * Analytics dashboard for class-wise results.
+
+---
+
+**Execute the following command in the project root folder to run:**
+
+>>> streamlit run src/streamlit_app.py
