@@ -92,9 +92,3 @@ python src/process_cli.py \
 * Machine learning model for ambiguous or partially filled bubbles.
 * Automatic sheet version detection and adaptive thresholding.
 * Analytics dashboard for class-wise results.
-
----
-
-## License
-
-MIT License
