@@ -97,4 +97,5 @@ python src/process_cli.py \
 
 **Execute the following command in the project root folder to run:**
 
->>> streamlit run src/streamlit_app.py
+streamlit run src/streamlit_app.py
+
