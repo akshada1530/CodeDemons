@@ -1,0 +1,36 @@
+{
+  "detected_answers": {
+    "1": "A",
+    "2": "B",
+    "3": "C",
+    "4": "D"
+  },
+  "evaluation": {
+    "total_score": 2,
+    "subject_scores": {
+      "General": 2
+    },
+    "per_question": {
+      "1": {
+        "student": "A",
+        "correct": "A",
+        "is_correct": true
+      },
+      "2": {
+        "student": "B",
+        "correct": "C",
+        "is_correct": false
+      },
+      "3": {
+        "student": "C",
+        "correct": "B",
+        "is_correct": false
+      },
+      "4": {
+        "student": "D",
+        "correct": "D",
+        "is_correct": true
+      }
+    }
+  }
+}
